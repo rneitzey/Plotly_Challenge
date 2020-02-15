@@ -15,7 +15,7 @@ function buildCharts(sampleID) {
     x: sample_values,
     y: otu_ids.map(otuID => `OTU ${otuID}`),
     text: otu_labels,
-    name: "Top 10 OTU for Subject",
+    title: "Top 10 OTU for Subject",
     type: "bar",
     orientation: "h"
   };
@@ -29,7 +29,7 @@ function buildCharts(sampleID) {
     margin: {
       l: 100,
       r: 100,
-      t: 100,
+      t: 25,
       b: 100
     }
   };
@@ -46,14 +46,13 @@ function buildCharts(sampleID) {
       marker: {
         size: sample_values,
         color: otu_ids,
-        colorscale: "Picnic"
+        colorscale: "Earth"
       }
     }
   ];
 
   let bubbleChartLayout = {
     margin: { t: 0 },
-    hovermode: "closests",
     xaxis: { title: "OTU ID" }
   };
 
@@ -71,7 +70,7 @@ function buildMetadata(sampleID) {
     let selectedMetaData = sample_data.metadata.filter(meta => meta.id === parseInt(sampleID))[0];
     // Add each key and value pair to the panel
     Object.entries(selectedMetaData).forEach(([key, value]) => {
-      panel.append("h6").text(`${key}:${value}`);
+      panel.append("h5").text(`${key}:${value}`);
     });
   };
 
